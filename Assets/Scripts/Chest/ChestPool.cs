@@ -15,7 +15,6 @@ namespace ChestSystem.Chest
         public ChestPool(ChestModel model)
         {
             this.chestModel = model;
-           
         }
 
         public ChestController GetChest() => GetItem<ChestController>();

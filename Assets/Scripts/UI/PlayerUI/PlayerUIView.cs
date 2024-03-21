@@ -14,7 +14,6 @@ namespace ChestSystem.UI
 
         private void OnClickGetChest()
         {
-           
             chestUIController.GetChest();
         }
         public void SetParent(GameObject parent)
