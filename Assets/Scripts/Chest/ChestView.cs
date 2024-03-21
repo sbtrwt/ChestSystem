@@ -11,4 +11,12 @@ public class ChestView : MonoBehaviour
     {
         chestController = controller;
     }
+    public void SetParent(GameObject parent)
+    {
+        if (parent != null)
+        {
+            gameObject.transform.SetParent(parent.transform, false);
+        }
+
+    }
 }

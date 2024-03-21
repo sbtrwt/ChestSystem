@@ -9,7 +9,7 @@ namespace ChestSystem.Chest
         private ChestPool chestPool;
         private ChestModel chestModel;
         private EventService eventService;
-        private ChestController chestController;
+        //private ChestController chestController;
         public ChestService(ChestModel model)
         {
             this.chestModel = model;
@@ -20,7 +20,10 @@ namespace ChestSystem.Chest
         {
             this.eventService = eventService;
         }
-
-
+        public void SpawnChest()
+        {
+            ChestController spawnedChest = chestPool.GetChest();
+        }
+        public void ReturnChestToPool(ChestController enemyToReturn) => chestPool.ReturnItem(enemyToReturn);
     }
 }

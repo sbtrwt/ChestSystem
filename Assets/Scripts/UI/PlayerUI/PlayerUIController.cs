@@ -1,4 +1,5 @@
-﻿using ChestSystem.Event;
+﻿using ChestSystem.Chest;
+using ChestSystem.Event;
 using UnityEngine;
 
 
@@ -9,9 +10,11 @@ namespace ChestSystem.UI
         private PlayerUIView chestUIView;
         private UIModel uiModel;
         private EventService eventService;
-        public PlayerUIController(UIModel model, EventService eventService)
+        private ChestService chestService;
+        public PlayerUIController(UIModel model, EventService eventService, ChestService chestService)
         {
             this.eventService = eventService;
+            this.chestService = chestService;
             uiModel = model;
             InitView();
             if (model?.Parent)
@@ -33,7 +36,7 @@ namespace ChestSystem.UI
         public void GetChest()
         {
             Debug.Log("create chest");
-
+            chestService.SpawnChest();
         }
     }
 }
