@@ -1,18 +1,26 @@
+using ChestSystem.Event;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ChestService : MonoBehaviour
+namespace ChestSystem.Chest
 {
-    // Start is called before the first frame update
-    void Start()
+    public class ChestService
     {
-        
-    }
+        private ChestPool chestPool;
+        private ChestModel chestModel;
+        private EventService eventService;
+        private ChestController chestController;
+        public ChestService(ChestModel model)
+        {
+            this.chestModel = model;
+            //chestController = new ChestController(uiModel, eventService);
+            chestPool = new ChestPool(model);
+        }
+        public void InjectDependencies(EventService eventService)
+        {
+            this.eventService = eventService;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
     }
 }

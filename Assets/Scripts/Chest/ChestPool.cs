@@ -18,7 +18,7 @@ namespace ChestSystem.Chest
            
         }
 
-        public ChestController GetEnemy() => GetItem<ChestController>();
+        public ChestController GetChest() => GetItem<ChestController>();
 
         protected override ChestController CreateItem<T>() => new ChestController(chestModel);
     }
