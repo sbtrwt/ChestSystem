@@ -42,6 +42,10 @@ namespace ChestSystem.Utilities
             throw new NotImplementedException("CreateItem() method not implemented in derived class");
         }
 
+        protected int GetUnusedItemCount<U>() where U : T
+        {
+          return pooledItems.Where(item => !item.isUsed && item.Item is U).Count();
+        }
         public virtual void ReturnItem(T item)
         {
             PooledItem<T> pooledItem = pooledItems.Find(i => i.Item.Equals(item));

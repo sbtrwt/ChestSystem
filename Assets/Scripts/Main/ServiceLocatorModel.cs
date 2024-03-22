@@ -1,18 +1,16 @@
+using ChestSystem.Chest;
+using ChestSystem.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServiceLocatorModel : MonoBehaviour
+namespace ChestSystem.Main
 {
-    // Start is called before the first frame update
-    void Start()
+    [Serializable]
+    public class ServiceLocatorModel
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public ChestModel ChestModel;
+        public UIModel UIModel;
     }
 }
