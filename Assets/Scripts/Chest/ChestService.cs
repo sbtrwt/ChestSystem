@@ -9,12 +9,14 @@ namespace ChestSystem.Chest
         private ChestPool chestPool;
         private ChestModel chestModel;
         private EventService eventService;
-        //private ChestController chestController;
+        private List<ChestController> chestControllerList;
+        private int chestPoolSize = 8;
         public ChestService(ChestModel model)
         {
             this.chestModel = model;
             //chestController = new ChestController(uiModel, eventService);
             chestPool = new ChestPool(model);
+            InitChestList();
         }
         public void InjectDependencies(EventService eventService)
         {
@@ -23,7 +25,23 @@ namespace ChestSystem.Chest
         public void SpawnChest()
         {
             ChestController spawnedChest = chestPool.GetChest();
+            if (spawnedChest != null)
+            {
+                spawnedChest.SetChest();
+            }
         }
-        public void ReturnChestToPool(ChestController enemyToReturn) => chestPool.ReturnItem(enemyToReturn);
+        public void InitChestList()
+        {
+            chestControllerList = chestPool.InitChestPoolItems(chestPoolSize);
+            foreach (var chestContorller in chestControllerList)
+            {
+                chestPool.ReturnItem(chestContorller);
+            }
+        }
+        public void ReturnChestToPool(ChestController chestToReturn)
+        {
+            chestPool.ReturnItem(chestToReturn);
+            chestToReturn.ResetChest();
+        }
     }
 }

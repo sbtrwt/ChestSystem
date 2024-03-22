@@ -14,12 +14,12 @@ namespace ChestSystem.Chest
         public EmptyState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
         public void OnStateEnter()
         {
-            
+            Owner.ShowEmptySlot(true);
         }
 
         public void OnStateExit()
         {
-           
+            Owner.ShowEmptySlot(false);
         }
 
         public void Update()

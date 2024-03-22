@@ -12,7 +12,7 @@ namespace ChestSystem.StateMachine
     {
         protected T Owner;
         protected IState currentState;
-        protected Dictionary<States, IState> States = new ();
+        protected Dictionary<States, IState> States = new Dictionary<States, IState>();
 
         public GenericStateMachine(T Owner) => this.Owner = Owner;
 

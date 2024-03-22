@@ -14,7 +14,7 @@ namespace ChestSystem.Chest
         public LockedState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
         public void OnStateEnter()
         {
-            
+            Owner.ShowChestSlot(true);
         }
 
         public void OnStateExit()
