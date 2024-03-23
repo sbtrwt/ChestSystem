@@ -9,5 +9,6 @@ namespace ChestSystem.Utilities
    public  class GlobalConstant
     {
         public const string TEXT_OPEN = "OPEN";
+        public const string TEXT_LOCKED = "LOCKED";
     }
 }

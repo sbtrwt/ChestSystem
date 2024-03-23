@@ -18,12 +18,12 @@ namespace ChestSystem.Chest
             //chestController = new ChestController(uiModel, eventService);
          
         }
-        public void InjectDependencies(EventService eventService)
+        public void InjectDependencies(EventService eventService, PlayerService playerService)
         {
             this.eventService = eventService;
             chestPool = new ChestPool(chestModel, eventService);
             InitChestList();
-            chestActionController = new ChestActionController(chestModel.ChestActionModel, eventService);
+            chestActionController = new ChestActionController(chestModel.ChestActionModel, eventService, this, playerService);
         }
         public void SpawnChest()
         {

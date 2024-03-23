@@ -8,13 +8,17 @@ namespace ChestSystem.Chest
 {
     public class ChestActionController
     {
-        protected ChestActionModel chestActionModel;
-        protected ChestActionView chestActionView;
+        private ChestActionModel chestActionModel;
+        private ChestActionView chestActionView;
         private EventService eventService;
         private ChestController chestController;
-        public ChestActionController(ChestActionModel model, EventService eventService)
+        private ChestService chestService;
+        private PlayerService playerService;
+        public ChestActionController(ChestActionModel model, EventService eventService, ChestService chestService, PlayerService playerService)
         {
             this.eventService = eventService;
+            this.chestService = chestService;
+            this.playerService = playerService;
             chestActionModel = model;
             InitView();
             if (model?.Parent)
@@ -43,7 +47,11 @@ namespace ChestSystem.Chest
             chestActionView.gameObject.SetActive(isShow);
         }
 
-        public void OnStartTimer() { chestController?.StartChestTimer(); OnClose(); }
+        public void OnStartTimer() {
+            if (chestController?.GetCurrentState() == States.LOCKED)
+            { chestController?.StartChestTimer(); }
+            OnClose(); 
+        }
         public void OnOpenNow() { eventService.OnOpenNow.InvokeEvent(); }
         public void OnClose()
         {
@@ -54,8 +62,29 @@ namespace ChestSystem.Chest
         {
             this.chestController = chestController;
             ShowChestActionView(true);
+            
+            States state = chestController.GetCurrentState();
+            switch (state)
+            {
+                case States.LOCKED:
+                   chestActionView. ShowChestAction(true);
+                    chestActionView.ShowChestCollection(false);
+                    break;
+                case States.OPEN:
+                    chestActionView.ShowChestAction(false);
+                    chestActionView.ShowChestCollection(true);
+                    OnCollection();
+                    this.chestService.ReturnChestToPool(chestController);
+                    break;
+            }
+        }
+        private void OnCollection() 
+        {
+            playerService.AddGold(500);
+            playerService.AddGem(3);
         }
 
+      
         ~ChestActionController()
         {
             eventService.OnOpenChestAction.RemoveListener(OnOpenChestAction);

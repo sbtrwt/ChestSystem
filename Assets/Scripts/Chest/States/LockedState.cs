@@ -1,4 +1,5 @@
 ﻿using ChestSystem.StateMachine;
+using ChestSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ChestSystem.Chest
         public void OnStateEnter()
         {
             Owner.ShowChestSlot(true);
+            Owner.SetStatusText(GlobalConstant.TEXT_LOCKED);
             Owner.SetGemText(Owner.GetGemText(Owner.ChestModel.ChestSO.openTime));
             Owner.SetTimerText(FormatTime(Owner.ChestModel.ChestSO.openTime));
         }

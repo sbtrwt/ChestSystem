@@ -24,5 +24,11 @@ namespace ChestSystem.Chest
             States.Add(StateMachine.States.OPEN, new OpenState<ChestController>(this));
             States.Add(StateMachine.States.COLLECTED, new CollectedState<ChestController>(this));
         }
+
+        public override void ChangeState(States newState)
+        {
+            base.ChangeState(newState);
+            Owner.SetState(newState);
+        }
     }
 }

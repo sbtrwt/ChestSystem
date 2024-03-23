@@ -16,11 +16,15 @@ namespace ChestSystem.Chest
         public void OnStateEnter()
         {
             Owner.SetStatusText(GlobalConstant.TEXT_OPEN);
+            Owner.SetOpenBackground();
+            Owner.ShowGemSlot(false);
         }
 
         public void OnStateExit()
         {
-           
+            Owner.ShowChestSlot(false);
+            Owner.SetDefaultBackground();
+            Owner.ShowGemSlot(true);
         }
 
         public void Update()

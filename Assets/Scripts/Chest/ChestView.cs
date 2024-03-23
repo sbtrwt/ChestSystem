@@ -8,15 +8,20 @@ using UnityEngine.UI;
 public class ChestView : MonoBehaviour
 {
     private ChestController chestController;
-    [SerializeField]private GameObject emptySlot;
-    [SerializeField]private GameObject chestSlot;
-    [SerializeField]private Button buttonChest;
+    [SerializeField] private GameObject emptySlot;
+    [SerializeField] private GameObject chestSlot;
+    [SerializeField] private Button buttonChest;
     [SerializeField] private TMP_Text textTimer;
     [SerializeField] private TMP_Text textStatus;
     [SerializeField] private TMP_Text textGem;
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Color backgroundColor;
+    [SerializeField] private Color backgroundOpenColor;
+    [SerializeField] private GameObject gemSlot;
     private void Start()
     {
         buttonChest.onClick.AddListener(OnClickChestButton);
+        backgroundImage.color = backgroundColor;
     }
     public void SetController(ChestController controller)
     {
@@ -40,7 +45,6 @@ public class ChestView : MonoBehaviour
     }
     public void OnClickChestButton() 
     {
-        //chestController.StartChestTimer();
         chestController.OpenChestActionPanel();
     }
     public void SetTimerText(string text)
@@ -57,6 +61,12 @@ public class ChestView : MonoBehaviour
     }
     private void Update()
     {
-        chestController.UpdateChest();
+        chestController?.UpdateChest();
+    }
+    public void SetDefaultBackground() { backgroundImage.color = backgroundColor; }
+    public void SetOpenBackground() { backgroundImage.color = backgroundOpenColor; }
+    public void ShowGemSlot(bool isShow)
+    {
+        gemSlot.SetActive(isShow);
     }
 }

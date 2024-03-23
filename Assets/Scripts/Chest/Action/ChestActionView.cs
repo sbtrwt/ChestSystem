@@ -13,6 +13,10 @@ namespace ChestSystem.Chest
         [SerializeField] private Button startTimerButton;
         [SerializeField] private Button openNowButton;
         [SerializeField] private Button closeButton;
+        [SerializeField] private GameObject chestActionPanel;
+        [SerializeField] private GameObject chestCollectionPanel;
+        [SerializeField] private TMP_Text textCollection;
+       
 
         private void Start()
         {
@@ -41,7 +45,17 @@ namespace ChestSystem.Chest
             chestActionController.OnClose();
         }
 
-
-
+        public void SetCollectionText(string text)
+        {
+            textCollection.text = text;
+        }
+        public void ShowChestAction(bool isShow)
+        {
+            chestActionPanel.SetActive(isShow);
+        }
+        public void ShowChestCollection(bool isShow)
+        {
+            chestCollectionPanel.SetActive(isShow);
+        }
     }
 }
