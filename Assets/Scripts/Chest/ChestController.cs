@@ -1,3 +1,4 @@
+using ChestSystem.Event;
 using ChestSystem.StateMachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +12,12 @@ namespace ChestSystem.Chest
 
         protected ChestState currentState;
         protected ChestStateMachine stateMachine;
-        public ChestController(ChestModel model)
+        protected float unlockingTimeInSec;
+        private EventService eventService;
+        public ChestModel ChestModel { get { return chestModel; } }
+        public ChestController(ChestModel model, EventService eventService)
         {
+            this.eventService = eventService;
             chestModel = model;
             InitView();
             if (model?.Parent)
@@ -48,10 +53,43 @@ namespace ChestSystem.Chest
         {
             stateMachine.ChangeState(States.LOCKED);
         }
+        public void StartChestTimer()
+        {
+            stateMachine.ChangeState(States.UNLOCKING);
+        }
+        public void SetChestOpen()
+        {
+            stateMachine.ChangeState(States.OPEN);
+        }
+
+        public void SetTimerText(string text)
+        {
+            chestView.SetTimerText(text);
+        }
+        public void SetStatusText(string text)
+        {
+            chestView.SetStatusText(text);
+        }
+        public void SetGemText(string text)
+        {
+            chestView.SetGemText(text);
+        }
+        public string GetGemText(float timeInSeconds)
+        {
+            int gems = Mathf.CeilToInt(timeInSeconds / 600);
+            return string.Format("{0}", gems);
+        }
+
+        public void OpenChestActionPanel() 
+        {
+            eventService.OnOpenChestAction.InvokeEvent(this);
+        }
+        public virtual void UpdateChest() { stateMachine.Update(); }
         public enum ChestState
         {
             ACTIVE,
             DEACTIVE
         }
+         
     }
 }

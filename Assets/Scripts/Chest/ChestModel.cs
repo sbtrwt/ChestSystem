@@ -9,5 +9,6 @@ namespace ChestSystem.Chest
         public ChestView ChestPrefab;
         public ChestSO ChestSO;
         public GameObject Parent;
+        public ChestActionModel ChestActionModel;
     }
 }

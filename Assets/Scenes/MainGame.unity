@@ -317,6 +317,10 @@ MonoBehaviour:
       ChestPrefab: {fileID: -2533336647792200369, guid: bec3d53f9bf5cdb4d9a13db0a977640b, type: 3}
       ChestSO: {fileID: 11400000, guid: 8d5675f78f7dc8743a9bdf87e9022c6c, type: 2}
       Parent: {fileID: 1806737206}
+      ChestActionModel:
+        ChestActionSO: {fileID: 11400000, guid: b2f225e24bf3fcc459024d4e9a4efd09, type: 2}
+        ChestActionPrefab: {fileID: 2040593509536837475, guid: 18a21738269053a49a71ed16771d1c87, type: 3}
+        Parent: {fileID: 2006207054}
     UIModel:
       PlayerUIView: {fileID: -8972360276227545329, guid: 218d73be2a4bac54da0a9e792f9d1d10, type: 3}
       Parent: {fileID: 2006207054}

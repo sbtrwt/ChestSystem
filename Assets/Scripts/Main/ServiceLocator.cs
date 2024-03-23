@@ -23,6 +23,7 @@ namespace ChestSystem.Main
         private void InjectDependencies()
         {
             uiService.InjectDependencies(eventService, chestService);
+            chestService.InjectDependencies(eventService);
         }
         public void Start()
         {

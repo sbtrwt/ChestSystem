@@ -10,17 +10,20 @@ namespace ChestSystem.Chest
         private ChestModel chestModel;
         private EventService eventService;
         private List<ChestController> chestControllerList;
+        private ChestActionController chestActionController;
         private int chestPoolSize = 8;
         public ChestService(ChestModel model)
         {
             this.chestModel = model;
             //chestController = new ChestController(uiModel, eventService);
-            chestPool = new ChestPool(model);
-            InitChestList();
+         
         }
         public void InjectDependencies(EventService eventService)
         {
             this.eventService = eventService;
+            chestPool = new ChestPool(chestModel, eventService);
+            InitChestList();
+            chestActionController = new ChestActionController(chestModel.ChestActionModel, eventService);
         }
         public void SpawnChest()
         {

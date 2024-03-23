@@ -414,6 +414,9 @@ MonoBehaviour:
   emptySlot: {fileID: 5513609323638644208}
   chestSlot: {fileID: 4335825397765414252}
   buttonChest: {fileID: 4047342332736836911}
+  textTimer: {fileID: 3240683668291656413}
+  textStatus: {fileID: 3598760138154038901}
+  textGem: {fileID: 366735948055702127}
 --- !u!1 &5513609323638644208
 GameObject:
   m_ObjectHideFlags: 0

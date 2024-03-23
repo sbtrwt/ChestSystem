@@ -1,4 +1,5 @@
-﻿using ChestSystem.Utilities;
+﻿using ChestSystem.Event;
+using ChestSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace ChestSystem.Chest
     public class ChestPool : GenericObjectPool<ChestController>
     {
         private ChestModel chestModel;
+        private EventService eventService;
 
-
-        public ChestPool(ChestModel model)
+        public ChestPool(ChestModel model, EventService eventService)
         {
             this.chestModel = model;
+            this.eventService = eventService;
         }
 
         public ChestController GetChest() {
@@ -28,7 +30,7 @@ namespace ChestSystem.Chest
             }
         }
 
-        protected override ChestController CreateItem<T>() => new ChestController(chestModel);
+        protected override ChestController CreateItem<T>() => new ChestController(chestModel, eventService);
 
         public List<ChestController> InitChestPoolItems(int quantity)
         {

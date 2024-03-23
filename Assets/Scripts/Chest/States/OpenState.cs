@@ -1,4 +1,5 @@
 ﻿using ChestSystem.StateMachine;
+using ChestSystem.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace ChestSystem.Chest
         public OpenState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
         public void OnStateEnter()
         {
-            
+            Owner.SetStatusText(GlobalConstant.TEXT_OPEN);
         }
 
         public void OnStateExit()
