@@ -18,6 +18,7 @@ namespace ChestSystem.Chest
         private UIService uiService;
 
         public int UnlockingChestCount { get {return unlockingChestCount; } }
+        public int MaxUnlockingChestCount { get { return chestModel.MaxUnlockingChestCount; } }
         public ChestService(ChestModel model)
         {
             this.chestModel = model;
@@ -26,7 +27,7 @@ namespace ChestSystem.Chest
         {
             this.eventService = eventService;
             this.uiService = uIService;
-            chestPool = new ChestPool(chestModel, eventService);
+            chestPool = new ChestPool(chestModel, eventService, this);
             InitChestList();
             chestActionController = new ChestActionController(chestModel.ChestActionModel, eventService, this, playerService, uiService);
         }
@@ -54,6 +55,15 @@ namespace ChestSystem.Chest
         {
             chestPool.ReturnItem(chestToReturn);
             chestToReturn.ResetChest();
+        }
+
+        public void IncreaseUnlockingChest()
+        {
+            unlockingChestCount++;
+        }
+        public void DecreaseUnlockingChest()
+        {
+            unlockingChestCount--;
         }
     }
 }

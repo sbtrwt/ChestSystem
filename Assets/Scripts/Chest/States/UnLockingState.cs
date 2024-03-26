@@ -33,6 +33,7 @@ namespace ChestSystem.Chest
             Owner.SetGemText(Owner.GetGemText(unlockingTime));
             if (unlockingTime <= 0)
             {
+                Owner.DecreaseUnlockingCounter();
                 Owner.SetTimerText("");
                 Owner.SetChestOpen();
             }

@@ -54,16 +54,29 @@ namespace ChestSystem.Chest
         public void OnStartTimer()
         {
             if (chestController?.GetCurrentState() == States.LOCKED)
-            { chestController?.StartChestTimer(); }
+            {
+                if (chestService.UnlockingChestCount <= chestService.MaxUnlockingChestCount)
+                {
+                    chestController?.StartChestTimer();
+                    chestService.IncreaseUnlockingChest();
+                }
+                else
+                {
+                    uIService.SetMessageText(GlobalConstant.TEXT_UNLOCKCOUNT);
+                }
+
+            }
             OnClose();
         }
         public void OnOpenNow()
         {
-            
-
             if (playerService.Gems >= chestController.GemsRequired)
             {
                 playerService.AddGem(-chestController.GemsRequired);
+                if (chestController?.GetCurrentState() == States.UNLOCKING)
+                {
+                    chestService.DecreaseUnlockingChest();
+                }
                 chestController.SetChestOpen();
             }
             else

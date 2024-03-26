@@ -12,5 +12,6 @@ namespace ChestSystem.Chest
         public List<ChestSO> AllChestSO;
         public GameObject Parent;
         public ChestActionModel ChestActionModel;
+        public int MaxUnlockingChestCount;
     }
 }

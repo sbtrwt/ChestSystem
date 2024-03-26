@@ -12,11 +12,12 @@ namespace ChestSystem.Chest
     {
         private ChestModel chestModel;
         private EventService eventService;
-
-        public ChestPool(ChestModel model, EventService eventService)
+        private ChestService chestService;
+        public ChestPool(ChestModel model, EventService eventService, ChestService chestService)
         {
             this.chestModel = model;
             this.eventService = eventService;
+            this.chestService = chestService;
         }
 
         public ChestController GetChest() {
@@ -30,7 +31,7 @@ namespace ChestSystem.Chest
             }
         }
 
-        protected override ChestController CreateItem<T>() => new ChestController(chestModel, eventService);
+        protected override ChestController CreateItem<T>() => new ChestController(chestModel, eventService, chestService);
 
         public List<ChestController> InitChestPoolItems(int quantity)
         {

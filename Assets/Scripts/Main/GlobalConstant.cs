@@ -10,5 +10,6 @@ namespace ChestSystem.Main
     {
         public const string TEXT_FULLSLOTS = "Slots are full";
         public const string TEXT_NOGEMS = "Not enough gems";
+        public const string TEXT_UNLOCKCOUNT = "Already chest is unlocking";
     }
 }
