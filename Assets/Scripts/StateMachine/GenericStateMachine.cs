@@ -25,7 +25,7 @@ namespace ChestSystem.StateMachine
             currentState?.OnStateEnter();
         }
 
-        public void ChangeState(States newState) => ChangeState(States[newState]);
+        public virtual void ChangeState(States newState) => ChangeState(States[newState]);
 
         protected void SetOwner()
         {

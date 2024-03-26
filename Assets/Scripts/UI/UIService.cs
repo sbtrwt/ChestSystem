@@ -22,6 +22,19 @@ namespace ChestSystem.UI
             this.chestService = chestService;
             playerUIController = new PlayerUIController(uiModel, eventService, chestService);
         }
-       
+
+        public void SetGoldText(string text)
+        {
+            playerUIController.SetGoldText(text);
+        }
+        public void SetGemText(string text)
+        {
+            playerUIController.SetGemText(text);
+        }
+
+        public void SetMessageText(string text)
+        {
+            playerUIController.SetMessageText(text);
+        }
     }
 }

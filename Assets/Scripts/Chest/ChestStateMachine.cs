@@ -21,7 +21,14 @@ namespace ChestSystem.Chest
             States.Add(StateMachine.States.EMPTY, new EmptyState<ChestController>(this));
             States.Add(StateMachine.States.LOCKED, new LockedState<ChestController>(this));
             States.Add(StateMachine.States.UNLOCKING, new UnLockingState<ChestController>(this));
+            States.Add(StateMachine.States.OPEN, new OpenState<ChestController>(this));
             States.Add(StateMachine.States.COLLECTED, new CollectedState<ChestController>(this));
+        }
+
+        public override void ChangeState(States newState)
+        {
+            base.ChangeState(newState);
+            Owner.SetState(newState);
         }
     }
 }

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19dbf69c77ea44642acbd1557d7f9598, type: 3}
-  m_Name: chest1_SO
+  m_Name: chestEpic_SO 1
   m_EditorClassIdentifier: 
   ID: 1
-  Type: 1
-  ClosedImage: {fileID: 21300000, guid: 9d6c9e5fd71ba6241af63846bc4ef7bb, type: 3}
+  Type: 3
+  ClosedImage: {fileID: 21300000, guid: 0354bdfbf0ec3a64cb79a76ac8d24fa1, type: 3}
   OpenedImage: {fileID: 21300000, guid: 9d6c9e5fd71ba6241af63846bc4ef7bb, type: 3}
   CollectedImage: {fileID: 21300000, guid: fe44dbb23ea10d945b719e3771486a18, type: 3}
-  OpenTime: 30
-  MaxGold: 200
-  MinGold: 100
-  MaxGem: 20
-  MinGem: 10
+  OpenTime: 3600
+  MaxGold: 800
+  MinGold: 600
+  MaxGem: 60
+  MinGem: 45

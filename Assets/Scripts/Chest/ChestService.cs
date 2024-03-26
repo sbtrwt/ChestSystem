@@ -1,4 +1,6 @@
 using ChestSystem.Event;
+using ChestSystem.Main;
+using ChestSystem.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,17 +12,24 @@ namespace ChestSystem.Chest
         private ChestModel chestModel;
         private EventService eventService;
         private List<ChestController> chestControllerList;
+        private ChestActionController chestActionController;
         private int chestPoolSize = 8;
+        private int unlockingChestCount = 1;
+        private UIService uiService;
+
+        public int UnlockingChestCount { get {return unlockingChestCount; } }
+        public int MaxUnlockingChestCount { get { return chestModel.MaxUnlockingChestCount; } }
         public ChestService(ChestModel model)
         {
             this.chestModel = model;
-            //chestController = new ChestController(uiModel, eventService);
-            chestPool = new ChestPool(model);
-            InitChestList();
         }
-        public void InjectDependencies(EventService eventService)
+        public void InjectDependencies(EventService eventService, PlayerService playerService, UIService uIService)
         {
             this.eventService = eventService;
+            this.uiService = uIService;
+            chestPool = new ChestPool(chestModel, eventService, this);
+            InitChestList();
+            chestActionController = new ChestActionController(chestModel.ChestActionModel, eventService, this, playerService, uiService);
         }
         public void SpawnChest()
         {
@@ -28,6 +37,10 @@ namespace ChestSystem.Chest
             if (spawnedChest != null)
             {
                 spawnedChest.SetChest();
+            }
+            else
+            {
+                uiService.SetMessageText(GlobalConstant.TEXT_FULLSLOTS);
             }
         }
         public void InitChestList()
@@ -42,6 +55,15 @@ namespace ChestSystem.Chest
         {
             chestPool.ReturnItem(chestToReturn);
             chestToReturn.ResetChest();
+        }
+
+        public void IncreaseUnlockingChest()
+        {
+            unlockingChestCount++;
+        }
+        public void DecreaseUnlockingChest()
+        {
+            unlockingChestCount--;
         }
     }
 }

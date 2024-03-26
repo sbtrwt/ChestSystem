@@ -10,11 +10,15 @@ namespace ChestSystem.Chest
     public class ChestSO : ScriptableObject
     {
         public int ID;
-        public ChestType type;
+        public ChestType Type;
         public Sprite ClosedImage;
         public Sprite OpenedImage;
         public Sprite CollectedImage;
-        public float openTime;
+        public float OpenTime;
+        public int MaxGold;
+        public int MinGold;
+        public int MaxGem;
+        public int MinGem;
 
     }
 }

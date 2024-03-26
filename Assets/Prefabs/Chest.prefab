@@ -414,6 +414,13 @@ MonoBehaviour:
   emptySlot: {fileID: 5513609323638644208}
   chestSlot: {fileID: 4335825397765414252}
   buttonChest: {fileID: 4047342332736836911}
+  textTimer: {fileID: 3240683668291656413}
+  textStatus: {fileID: 3598760138154038901}
+  textGem: {fileID: 366735948055702127}
+  backgroundImage: {fileID: 4828883415410283846}
+  backgroundColor: {r: 0.42213947, g: 0.4264151, b: 0.40469205, a: 0.14117648}
+  backgroundOpenColor: {r: 0.764244, g: 0.8792453, b: 0.25050196, a: 0.88235295}
+  gemSlot: {fileID: 7598262523949429510}
 --- !u!1 &5513609323638644208
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7584905, g: 0.7255749, b: 0.7255749, a: 0.11372549}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.11372549}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
