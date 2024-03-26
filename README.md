@@ -47,4 +47,8 @@ Rewards will be received depending upon the type of the chest
 
 ![chestsys2](https://github.com/sbtrwt/ChestSystem/assets/5724149/aa752b9f-2003-4c18-8f62-e487b2e83a03)
 
+### GamePlay
+
+https://github.com/sbtrwt/ChestSystem/assets/5724149/d9acd219-ee20-439c-865b-d1360c3be70b
+
 
