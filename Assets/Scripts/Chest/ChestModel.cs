@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ChestSystem.Chest
@@ -8,6 +9,7 @@ namespace ChestSystem.Chest
     {
         public ChestView ChestPrefab;
         public ChestSO ChestSO;
+        public List<ChestSO> AllChestSO;
         public GameObject Parent;
         public ChestActionModel ChestActionModel;
     }

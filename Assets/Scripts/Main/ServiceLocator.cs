@@ -26,7 +26,7 @@ namespace ChestSystem.Main
         {
             uiService.InjectDependencies(eventService, chestService);
             playerService.InjectDependencies(uiService);
-            chestService.InjectDependencies(eventService, playerService);
+            chestService.InjectDependencies(eventService, playerService, uiService);
         }
         public void Start()
         {

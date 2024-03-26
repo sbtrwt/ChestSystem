@@ -1,5 +1,7 @@
 ﻿using ChestSystem.Event;
+using ChestSystem.Main;
 using ChestSystem.StateMachine;
+using ChestSystem.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,11 +16,13 @@ namespace ChestSystem.Chest
         private ChestController chestController;
         private ChestService chestService;
         private PlayerService playerService;
-        public ChestActionController(ChestActionModel model, EventService eventService, ChestService chestService, PlayerService playerService)
+        private UIService uIService;
+        public ChestActionController(ChestActionModel model, EventService eventService, ChestService chestService, PlayerService playerService, UIService uiService)
         {
             this.eventService = eventService;
             this.chestService = chestService;
             this.playerService = playerService;
+            this.uIService = uiService;
             chestActionModel = model;
             InitView();
             if (model?.Parent)
@@ -47,12 +51,27 @@ namespace ChestSystem.Chest
             chestActionView.gameObject.SetActive(isShow);
         }
 
-        public void OnStartTimer() {
+        public void OnStartTimer()
+        {
             if (chestController?.GetCurrentState() == States.LOCKED)
             { chestController?.StartChestTimer(); }
-            OnClose(); 
+            OnClose();
         }
-        public void OnOpenNow() { eventService.OnOpenNow.InvokeEvent(); }
+        public void OnOpenNow()
+        {
+            
+
+            if (playerService.Gems >= chestController.GemsRequired)
+            {
+                playerService.AddGem(-chestController.GemsRequired);
+                chestController.SetChestOpen();
+            }
+            else
+            {
+                uIService.SetMessageText(GlobalConstant.TEXT_NOGEMS);
+            }
+            OnClose();
+        }
         public void OnClose()
         {
             this.chestController = null;
@@ -62,12 +81,12 @@ namespace ChestSystem.Chest
         {
             this.chestController = chestController;
             ShowChestActionView(true);
-            
+
             States state = chestController.GetCurrentState();
             switch (state)
             {
                 case States.LOCKED:
-                   chestActionView. ShowChestAction(true);
+                    chestActionView.ShowChestAction(true);
                     chestActionView.ShowChestCollection(false);
                     break;
                 case States.OPEN:
@@ -78,13 +97,15 @@ namespace ChestSystem.Chest
                     break;
             }
         }
-        private void OnCollection() 
+        private void OnCollection()
         {
-            playerService.AddGold(500);
-            playerService.AddGem(3);
+            ChestController.Reward reward = chestController.GetReward();
+            playerService.AddGold(reward.Gold);
+            playerService.AddGem(reward.Gem);
+            chestActionView.SetCollectionText($"You got {reward.Gold} gold and {reward.Gem} gem.");
         }
 
-      
+
         ~ChestActionController()
         {
             eventService.OnOpenChestAction.RemoveListener(OnOpenChestAction);

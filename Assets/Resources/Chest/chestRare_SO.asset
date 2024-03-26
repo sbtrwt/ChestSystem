@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19dbf69c77ea44642acbd1557d7f9598, type: 3}
-  m_Name: chest1_SO
+  m_Name: chestRare_SO
   m_EditorClassIdentifier: 
   ID: 1
-  Type: 1
+  Type: 2
   ClosedImage: {fileID: 21300000, guid: 9d6c9e5fd71ba6241af63846bc4ef7bb, type: 3}
   OpenedImage: {fileID: 21300000, guid: 9d6c9e5fd71ba6241af63846bc4ef7bb, type: 3}
   CollectedImage: {fileID: 21300000, guid: fe44dbb23ea10d945b719e3771486a18, type: 3}
-  OpenTime: 30
-  MaxGold: 200
-  MinGold: 100
-  MaxGem: 20
-  MinGem: 10
+  OpenTime: 1800
+  MaxGold: 500
+  MinGold: 300
+  MaxGem: 40
+  MinGem: 20

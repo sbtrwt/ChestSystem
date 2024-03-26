@@ -14,11 +14,18 @@ namespace ChestSystem.Chest
         protected ChestStateMachine stateMachine;
         protected float unlockingTimeInSec;
         private EventService eventService;
+        private ChestType chestType;
+        private int gemsRequired;
+        private float unlockingTime;
         public ChestModel ChestModel { get { return chestModel; } }
+        public int GemsRequired { get { return gemsRequired; } }
+        public float UnlockingTime { get { return unlockingTime; } }
         public ChestController(ChestModel model, EventService eventService)
         {
             this.eventService = eventService;
             chestModel = model;
+            chestModel.ChestSO = GetRandomChest();
+            unlockingTime = chestModel.ChestSO.OpenTime;
             InitView();
             if (model?.Parent)
             { SetParent(model.Parent); }
@@ -48,7 +55,10 @@ namespace ChestSystem.Chest
         public void SetDefaultBackground() => chestView.SetDefaultBackground();
 
 
-        public void SetChest() => stateMachine.ChangeState(States.LOCKED);
+        public void SetChest() { 
+            stateMachine.ChangeState(States.LOCKED);
+            chestModel.ChestSO = GetRandomChest();
+        }
 
         public void StartChestTimer() => stateMachine.ChangeState(States.UNLOCKING);
 
@@ -66,8 +76,10 @@ namespace ChestSystem.Chest
 
         public string GetGemText(float timeInSeconds)
         {
-            int gems = Mathf.CeilToInt(timeInSeconds / 600);
-            return string.Format("{0}", gems);
+            unlockingTime = timeInSeconds;
+            gemsRequired = Mathf.CeilToInt(timeInSeconds / 600);
+
+            return string.Format("{0}", gemsRequired);
         }
 
         public void OpenChestActionPanel() => eventService.OnOpenChestAction.InvokeEvent(this);
@@ -76,6 +88,26 @@ namespace ChestSystem.Chest
 
         public States GetCurrentState() => currentState;
 
+        public ChestType GetChestType() => chestType;
+        public void SetChestType(ChestType chestType) => this.chestType  = chestType;
+        private ChestSO GetRandomChest() {
 
+            int selectIndex = Random.Range(0, chestModel.AllChestSO.Count);
+           return chestModel.AllChestSO[selectIndex];
+        }
+        public Reward GetReward() {
+            Reward reward = new Reward
+            {
+                Gold = Random.Range(chestModel.ChestSO.MinGold, chestModel.ChestSO.MaxGold),
+                Gem = Random.Range(chestModel.ChestSO.MinGem, chestModel.ChestSO.MaxGem)
+            };
+            return reward;
+        }
+
+        public struct Reward
+        {
+            public int Gold;
+            public int Gem;
+        }
     }
 }

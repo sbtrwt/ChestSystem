@@ -16,7 +16,7 @@ namespace ChestSystem.Chest
         public UnLockingState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
         public void OnStateEnter()
         {
-            unlockingTime = Owner.ChestModel.ChestSO.openTime;
+            unlockingTime = Owner.UnlockingTime;
             Owner.SetStatusText("");
         }
 
@@ -42,7 +42,7 @@ namespace ChestSystem.Chest
         {
             int minutes = Mathf.FloorToInt(timeInSeconds / 60);
             int seconds = Mathf.FloorToInt(timeInSeconds % 60);
-            return string.Format("{0}:{1:D2}s", minutes, seconds);
+            return string.Format("{0}:{1:D2}", minutes, seconds);
         }
 
        

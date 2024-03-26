@@ -18,8 +18,9 @@ namespace ChestSystem.Chest
         {
             Owner.ShowChestSlot(true);
             Owner.SetStatusText(GlobalConstant.TEXT_LOCKED);
-            Owner.SetGemText(Owner.GetGemText(Owner.ChestModel.ChestSO.openTime));
-            Owner.SetTimerText(FormatTime(Owner.ChestModel.ChestSO.openTime));
+            Owner.SetGemText(Owner.GetGemText(Owner.ChestModel.ChestSO.OpenTime));
+            Owner.SetTimerText(FormatTime(Owner.ChestModel.ChestSO.OpenTime));
+            Owner.SetChestType(Owner.ChestModel.ChestSO.Type);
         }
 
         public void OnStateExit()
@@ -36,7 +37,7 @@ namespace ChestSystem.Chest
         {
             int minutes = Mathf.FloorToInt(timeInSeconds / 60);
             int seconds = Mathf.FloorToInt(timeInSeconds % 60);
-            return string.Format("{0}:{1:D2}s", minutes, seconds);
+            return string.Format("{0}:{1:D2}", minutes, seconds);
         }
     }
 }

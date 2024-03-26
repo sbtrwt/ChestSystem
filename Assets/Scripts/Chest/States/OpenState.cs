@@ -15,6 +15,7 @@ namespace ChestSystem.Chest
         public OpenState(GenericStateMachine<T> stateMachine) => this.stateMachine = stateMachine;
         public void OnStateEnter()
         {
+            Owner.SetTimerText("");
             Owner.SetStatusText(GlobalConstant.TEXT_OPEN);
             Owner.SetOpenBackground();
             Owner.ShowGemSlot(false);
@@ -25,6 +26,7 @@ namespace ChestSystem.Chest
             Owner.ShowChestSlot(false);
             Owner.SetDefaultBackground();
             Owner.ShowGemSlot(true);
+            Owner.SetChestType(ChestType.None);
         }
 
         public void Update()

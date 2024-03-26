@@ -8,6 +8,7 @@ public class PlayerService
     private int gold;
     private int gems;
     private UIService uiService;
+    public int Gems { get { return gems; } }
     public PlayerService() { }
 
     public void InjectDependencies(UIService uiService)

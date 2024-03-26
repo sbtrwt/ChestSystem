@@ -31,5 +31,10 @@ namespace ChestSystem.UI
         {
             playerUIController.SetGemText(text);
         }
+
+        public void SetMessageText(string text)
+        {
+            playerUIController.SetMessageText(text);
+        }
     }
 }

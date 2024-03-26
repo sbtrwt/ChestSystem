@@ -45,5 +45,9 @@ namespace ChestSystem.UI
         {
             playerUIView.SetGemText(text);
         }
+        public void SetMessageText(string text)
+        {
+            playerUIView.SetMessageText(text);
+        }
     }
 }
