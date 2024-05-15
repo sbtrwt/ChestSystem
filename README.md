@@ -1,3 +1,13 @@
+## Code Implementation
+- Dependency Injection
+- Service locator
+- Observer design pattern
+- Object pooling
+- ScriptableObject
+- MVC-S architecture
+- Singleton design pattern
+- State Machine
+  
 # ChestSystem
 Chest system like clash royale
 
